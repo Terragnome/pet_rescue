@@ -2,20 +2,7 @@
 using System.Collections;
 
 public class Usable : MonoBehaviour {
-	public bool isUsable {
-		get {
-			if(container.isEmpty){ return false; }
-
-			foreach(Portable curPortable in container.contents){
-				Ingredient curIngredient = curPortable.GetComponent<Ingredient>();
-				if(curIngredient != null && !curIngredient.isPrepared) { return true; }
-			}
-
-			return false;
-		}
-	}
-
-	Collider col {
+	Collider collider {
 		get {
 			BoxCollider boxCollider = GetComponent<BoxCollider>();
 			if(boxCollider == null){
@@ -30,18 +17,8 @@ public class Usable : MonoBehaviour {
 		get { return GetComponent<Container>(); }
 	}
 
-	public bool Use(float dT) {
-		bool isUsing = false;
-		foreach(Portable curPortable in container.contents){
-			Ingredient curIngredient = curPortable.GetComponent<Ingredient>();
-			if(curIngredient != null && !curIngredient.isPrepared) {
-				curIngredient.Prepare(dT);
-				isUsing = true;
-			}
-		}
-
+	public void Use(float dT) {
 		UpdateProgress(dT);
-		return isUsing;
 	}
 
 	void UpdateProgress(float dT){

@@ -3,7 +3,10 @@ using System.Collections;
 
 public class ToolSlow : Tool {
 	protected void Start () {
-		cooldown = 1.0f;
+		rechargeRate = 1;
+		useRate = 2;
+		maxCharge = 100;
+
 		base.Start();
 	}
 }

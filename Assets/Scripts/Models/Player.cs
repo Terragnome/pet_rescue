@@ -32,8 +32,8 @@ public class Player : Entity {
 	void FixedUpdate () {
 		float dT = Time.deltaTime;
 
-		UpdateUse(dT);
 		UpdateLift(dT);
+		UpdateUse(dT);
 		UpdateMovement(dT);
 	}
 
@@ -155,11 +155,18 @@ public class Player : Entity {
 	void UpdateUse(float dT) {
 		bool checkUse = Input.GetKey(KeyCode.F);
 		if(checkUse){
+			if( liftTarget ){
+				Tool tool = liftTarget.GetComponent<Tool>() as Tool;
+				if (tool){
+					tool.Use();
+					return;
+				}
+			}
+
 			if( useTarget != null ){				
 				if(
 					DistanceSquaredTo(useTarget.transform.position) < useDistanceSquared
 					&& IsFacing(useTarget.transform.position, useAngle)
-					&& useTarget.isUsable
 				){
 					useTarget.Use(dT);
 					UpdateLookAtPosition(useTarget.transform.position, dT, turnSpeed);
