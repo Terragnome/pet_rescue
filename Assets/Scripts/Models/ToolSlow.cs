@@ -7,6 +7,8 @@ public class ToolSlow : Tool {
 		useRate = 2;
 		maxCharge = 100;
 
+		range = 10;
+
 		base.Start();
 	}
 }

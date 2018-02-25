@@ -12,7 +12,7 @@ public class Entity : MonoBehaviour {
 
 	public float pushForce = 5f;
 
-	protected GameObject avatar {
+	public GameObject avatar {
 	    get { return transform.GetChild(0).gameObject; }
 	}
 
