@@ -2,11 +2,14 @@
 using System.Collections;
 
 public class Pet : MonoBehaviour {
-  public enum PetType {Bird, Cat, Dog};
-  public enum PetName {Corgi};
+	public enum PetType {Mob, Tank};
+	public enum PetName {Corgi};
 
-  public PetType petType;
-  public PetName petName;
+	public PetType petType;
+	public PetName petName;
+
+	public int petSpeed;
+	public int petWeight;
 
 	void Start () {}
 	void Update () {}
