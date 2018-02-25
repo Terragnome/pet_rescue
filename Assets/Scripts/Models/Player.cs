@@ -16,10 +16,10 @@ public class Player : Entity {
 	public Usable useTarget = null;
 
 	public Vector3 avatarLiftPosition {
-		get { return avatar.transform.position-avatar.transform.forward*0.9f+Vector3.up*0.7f; }
+		get { return avatar.transform.position+avatar.transform.forward*0.9f+Vector3.up*0.7f; }
 	}
 
-	void Start () {
+	protected void Start () {
 		walkSpeed = 3f;
 		turnSpeed = 7f;
 		dashSpeed = 6f;
@@ -33,7 +33,6 @@ public class Player : Entity {
 		float dT = Time.deltaTime;
 
 		UpdateUse(dT);
-
 		UpdateLift(dT);
 		UpdateMovement(dT);
 	}
@@ -51,7 +50,7 @@ public class Player : Entity {
 	bool IsFacing(Vector3 position, float maxAngle){
 		float angle = Vector2.Angle(
 			ToVector2(avatar.transform.position) - ToVector2(position),
-			ToVector2(avatar.transform.forward)
+			ToVector2(avatar.transform.forward*-1)
 		);
 		return angle <= maxAngle;
 	}
@@ -63,12 +62,17 @@ public class Player : Entity {
 	Usable GetClosestUsable(float useDistance) {
 		Usable[] usables = Object.FindObjectsOfType<Usable>();
 		Usable closestUsable = null;
+		float closestDist = -1;
+
 		foreach(Usable curUsable in usables){
+			float usableDist = DistanceSquaredTo(curUsable.transform.position);
 			if(
-				DistanceSquaredTo(curUsable.transform.position) <= useDistanceSquared
+				(closestDist == -1 || usableDist < closestDist)
+				&& usableDist <= useDistanceSquared
 				&& IsFacing(curUsable.transform.position, useAngle)
 			){
 				closestUsable = curUsable;
+				closestDist = usableDist;
 			}
         }
         return closestUsable;
@@ -137,7 +141,7 @@ public class Player : Entity {
 	void UpdateLookAt(Vector3 lookVector, float dT, float lookSpeed=1f) {
 		avatar.transform.rotation = Quaternion.Lerp(
 			avatar.transform.rotation,
-			Quaternion.LookRotation(lookVector*-1, Vector3.up),
+			Quaternion.LookRotation(lookVector, Vector3.up),
 			lookSpeed*dT
 		);
 	}
