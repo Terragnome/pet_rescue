@@ -16,8 +16,6 @@ public class Player : MonoBehaviour {
 	public float liftDistanceSquared = Mathf.Pow(2f, 2);
 	public float liftAngle = 60f;
 	Portable liftTarget = null;
-	bool isLifting = false;
-	bool processLift = false;
 
 	public float dropDistanceSquared = Mathf.Pow(2f, 2);
 
@@ -71,6 +69,10 @@ public class Player : MonoBehaviour {
 			ToVector2(avatar.transform.forward)
 		);
 		return angle <= maxAngle;
+	}
+
+	bool IsLifting () {
+		return liftTarget != null;
 	}
 
 	Usable GetClosestUsable(float useDistance) {
@@ -194,8 +196,7 @@ public class Player : MonoBehaviour {
 	void UpdateLift(float dT) {
 		bool checkLift = Input.GetKeyDown(KeyCode.Space);
 		if(checkLift){
-			bool isDropping = liftTarget != null;
-			if( isDropping ){
+			if( IsLifting() ){
 				Container closestContainer = GetClosestContainer(dropDistanceSquared);
 				if(closestContainer != null){
 					closestContainer.FillWith(liftTarget);
@@ -208,7 +209,6 @@ public class Player : MonoBehaviour {
 				Portable curTarget = GetClosestPortable(liftDistanceSquared);
 				if(curTarget){
 					liftTarget = curTarget.Lift();
-					isLifting = true;
 				}
 			}
 		}
@@ -227,7 +227,6 @@ public class Player : MonoBehaviour {
 
 			// TODO: Figure out why this has to be stored in a variable, otherwise Portable position doesn't update
 			Vector3 liftRBPosition = liftRb.position;
-s
 			liftRb.MovePosition(avatarLiftPosition);
 		}
 	}
