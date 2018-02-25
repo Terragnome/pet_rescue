@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : Entity {
 	const float GRAVITY = 9.8f;
 
 	public float walkSpeed = 3f;

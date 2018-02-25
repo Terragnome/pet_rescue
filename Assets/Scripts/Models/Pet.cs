@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Pet : MonoBehaviour {
+public class Pet : Entity {
 	public enum PetType {Mob, Tank};
 	public enum PetName {Corgi};
 
@@ -10,6 +10,7 @@ public class Pet : MonoBehaviour {
 
 	public int petSpeed;
 	public int petWeight;
+	public Movement petMovement;
 
 	void Start () {}
 	void Update () {}
