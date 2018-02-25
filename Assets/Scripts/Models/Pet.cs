@@ -11,6 +11,9 @@ public class Pet : Entity {
 	public int petSpeed;
 	public int petWeight;
 
-	void Start () {}
+	protected void Start () {
+		gameObject.AddComponent<Portable>();
+		base.Start();
+	}
 	void Update () {}
 }

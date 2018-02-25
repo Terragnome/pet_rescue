@@ -26,4 +26,6 @@ public class Entity : MonoBehaviour {
 	}
 
 	void UpdateMovement () {}
+
+	protected void Start() {}
 }

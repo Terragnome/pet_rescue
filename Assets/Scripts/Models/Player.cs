@@ -7,14 +7,13 @@ public class Player : Entity {
 
 	public float liftDistanceSquared = Mathf.Pow(2f, 2);
 	public float liftAngle = 60f;
-	Portable liftTarget = null;
+	public Portable liftTarget = null;
 
 	public float dropDistanceSquared = Mathf.Pow(2f, 2);
 
 	public float useDistanceSquared = Mathf.Pow(2f, 2);
 	public float useAngle = 60f;
 	public Usable useTarget = null;
-	bool isUsing = false;
 
 	public Vector3 avatarLiftPosition {
 		get { return avatar.transform.position-avatar.transform.forward*0.9f+Vector3.up*0.7f; }
@@ -26,13 +25,14 @@ public class Player : Entity {
 		dashSpeed = 6f;
 		dashDuration = 0.3f;
 		pushForce = 5f;
+
+		base.Start();
 	}
 
 	void FixedUpdate () {
 		float dT = Time.deltaTime;
 
 		UpdateUse(dT);
-		if(isUsing) return;
 
 		UpdateLift(dT);
 		UpdateMovement(dT);
@@ -150,7 +150,6 @@ public class Player : Entity {
 
 	void UpdateUse(float dT) {
 		bool checkUse = Input.GetKey(KeyCode.F);
-		bool isCurrentlyUsing = false;
 		if(checkUse){
 			if( useTarget != null ){				
 				if(
@@ -158,7 +157,7 @@ public class Player : Entity {
 					&& IsFacing(useTarget.transform.position, useAngle)
 					&& useTarget.isUsable
 				){
-					isCurrentlyUsing = useTarget.Use(dT);
+					useTarget.Use(dT);
 					UpdateLookAtPosition(useTarget.transform.position, dT, turnSpeed);
 				}else{
 					useTarget = null;					
@@ -167,15 +166,11 @@ public class Player : Entity {
 
 			if( useTarget == null){
 				Usable curTarget = GetClosestUsable(useDistanceSquared);
-				if(curTarget){
-					useTarget = curTarget;
-				}
+				if(curTarget){ useTarget = curTarget; }
 			}
 		}else{
 			useTarget = null;
 		}
-
-		isUsing = isCurrentlyUsing;
 	}
 
 	void UpdateLift(float dT) {
