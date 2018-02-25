@@ -194,7 +194,8 @@ public class Player : MonoBehaviour {
 	void UpdateLift(float dT) {
 		bool checkLift = Input.GetKeyDown(KeyCode.Space);
 		if(checkLift){
-			if( liftTarget != null ){
+			bool isDropping = liftTarget != null;
+			if( isDropping ){
 				Container closestContainer = GetClosestContainer(dropDistanceSquared);
 				if(closestContainer != null){
 					closestContainer.FillWith(liftTarget);
@@ -223,6 +224,10 @@ public class Player : MonoBehaviour {
 
 			Quaternion targetRotation = angleA < angleB ? rotationA : rotationB;
 			liftRb.transform.rotation = targetRotation;
+
+			// TODO: Figure out why this has to be stored in a variable, otherwise Portable position doesn't update
+			Vector3 liftRBPosition = liftRb.position;
+s
 			liftRb.MovePosition(avatarLiftPosition);
 		}
 	}
@@ -234,6 +239,9 @@ public class Player : MonoBehaviour {
 		bool isWalkBack = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
 		bool isWalkLeft = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
 		bool isWalkRight = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
+
+		bool isMoving = isWalkForward || isWalkBack || isWalkLeft || isWalkRight;
+		if ( !isMoving ) return;
 
 		if( !isDashing ){
 			bool hasDashed = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
