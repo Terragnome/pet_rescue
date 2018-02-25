@@ -2,10 +2,6 @@
 using System.Collections;
 
 public class Usable : MonoBehaviour {
-
-	void Start () {}
-	void Update () {}
-
 	public bool isUsable {
 		get {
 			if(container.isEmpty){ return false; }
