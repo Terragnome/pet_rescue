@@ -1,20 +1,17 @@
 fileFormatVersion: 2
-guid: a7b894741613ce247ac378b2d04a2a4e
-timeCreated: 1519597000
+guid: 09545fd431e973a4a8b6f7a1625a1942
+timeCreated: 1519599665
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: skin
-    2100002: nose
-    2100004: Shoes
-    2100006: hair
-    2100008: eye
+    2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: MS_Harry
+    4300000: pasted__pasted__pSphere3
+    4300002: mesh_rhino
     9500000: //RootNode
   externalObjects: {}
   materials:
