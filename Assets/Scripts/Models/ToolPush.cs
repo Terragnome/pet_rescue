@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class ToolSlow : Tool {
+public class ToolPush : Tool {
 	protected void Start () {
-		debugRayColor = Color.blue;
+		debugRayColor = Color.yellow;
 
 		rechargeRate = 1;
 		useRate = 2;

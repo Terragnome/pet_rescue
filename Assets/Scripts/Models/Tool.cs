@@ -4,12 +4,13 @@ using System.Collections;
 public class Tool : MonoBehaviour {
 	public Entity user;
 
+	protected Color debugRayColor = Color.white;
+
 	public float useRate;
 	public float rechargeRate;
 	public float maxCharge;
 
 	public float charge;
-
 	public float range;
 
 	protected Portable portable {
@@ -36,7 +37,8 @@ public class Tool : MonoBehaviour {
 		if(charge > 0){
 			Debug.DrawRay(
 				gameObject.transform.position,
-				gameObject.transform.position+user.avatar.transform.forward*range
+				gameObject.transform.position+user.avatar.transform.forward*range,
+				debugRayColor
 			);
 			return true;
 		}
