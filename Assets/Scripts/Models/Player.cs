@@ -2,16 +2,8 @@
 using System.Collections;
 
 public class Player : Entity {
-	const float GRAVITY = 9.8f;
-
-	public float walkSpeed = 3f;
-	public float turnSpeed = 7f;
-	public float dashSpeed = 6f;
-	public float dashDuration = 0.3f;
 	float dashTimeLeft = 0f;
 	bool isDashing = false;
-
-	public float pushForce = 5f;
 
 	public float liftDistanceSquared = Mathf.Pow(2f, 2);
 	public float liftAngle = 60f;
@@ -24,17 +16,19 @@ public class Player : Entity {
 	public Usable useTarget = null;
 	bool isUsing = false;
 
-	public GameObject avatar {
-	    get { return transform.GetChild(0).gameObject; }
-	}
-
 	public Vector3 avatarLiftPosition {
 		get { return avatar.transform.position-avatar.transform.forward*0.9f+Vector3.up*0.7f; }
 	}
 
-	void Start () {}
+	void Start () {
+		walkSpeed = 3f;
+		turnSpeed = 7f;
+		dashSpeed = 6f;
+		dashDuration = 0.3f;
+		pushForce = 5f;
+	}
 
-	void Update () {
+	void FixedUpdate () {
 		float dT = Time.deltaTime;
 
 		UpdateUse(dT);
@@ -54,15 +48,6 @@ public class Player : Entity {
         body.velocity = pushDir*pushForce;
 	}
 
-	Vector2 ToVector2(Vector3 v) {
-		return new Vector2(v.x, v.z);
-	}
-
-	float DistanceSquared(Vector3 targetPosition) {
-		Vector2 distVector = ToVector2(avatar.transform.position) - ToVector2(targetPosition);
-		return distVector.sqrMagnitude;
-	}
-
 	bool IsFacing(Vector3 position, float maxAngle){
 		float angle = Vector2.Angle(
 			ToVector2(avatar.transform.position) - ToVector2(position),
@@ -80,7 +65,7 @@ public class Player : Entity {
 		Usable closestUsable = null;
 		foreach(Usable curUsable in usables){
 			if(
-				DistanceSquared(curUsable.transform.position) <= useDistanceSquared
+				DistanceSquaredTo(curUsable.transform.position) <= useDistanceSquared
 				&& IsFacing(curUsable.transform.position, useAngle)
 			){
 				closestUsable = curUsable;
@@ -95,7 +80,7 @@ public class Player : Entity {
 		foreach(Container curContainer in containers){
 			if(
 				!curContainer.isFull
-				&& DistanceSquared(curContainer.transform.position) <= dropDistanceSquared
+				&& DistanceSquaredTo(curContainer.transform.position) <= dropDistanceSquared
 				&& IsFacing(curContainer.transform.position, useAngle)
 			){
 				closestContainer = curContainer;
@@ -109,7 +94,7 @@ public class Player : Entity {
 		Generator closestGenerator = null;
 		float closestGeneratorDistSquared = liftDistanceSquared;
 		foreach(Generator curGenerator in generators){
-			float curGeneratorDistSquared = DistanceSquared(curGenerator.transform.position);
+			float curGeneratorDistSquared = DistanceSquaredTo(curGenerator.transform.position);
 			if(
 				curGeneratorDistSquared <= closestGeneratorDistSquared
 				&& IsFacing(curGenerator.transform.position, liftAngle)
@@ -122,7 +107,7 @@ public class Player : Entity {
 		Portable closestPortable = null;
 		float closestPortableDistSquared = liftDistanceSquared;
 		foreach(Portable curPortable in portables){
-			float curPortableDistSquared = DistanceSquared(curPortable.transform.position);
+			float curPortableDistSquared = DistanceSquaredTo(curPortable.transform.position);
 			if(
 				curPortableDistSquared <= closestPortableDistSquared
 				&& IsFacing(curPortable.transform.position, liftAngle)
@@ -169,7 +154,7 @@ public class Player : Entity {
 		if(checkUse){
 			if( useTarget != null ){				
 				if(
-					DistanceSquared(useTarget.transform.position) < useDistanceSquared
+					DistanceSquaredTo(useTarget.transform.position) < useDistanceSquared
 					&& IsFacing(useTarget.transform.position, useAngle)
 					&& useTarget.isUsable
 				){
@@ -271,7 +256,7 @@ public class Player : Entity {
 		}
 
 		Vector3 fullMoveVector = moveVector*curMoveSpeed;
-		fullMoveVector += Vector3.down*GRAVITY;
+		fullMoveVector += Vector3.down*Entity.GRAVITY;
 
 		GetComponent<CharacterController>().Move(fullMoveVector*dT);
 	}

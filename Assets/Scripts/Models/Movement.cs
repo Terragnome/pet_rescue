@@ -4,6 +4,13 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 	public enum MovementType {Random, Tank};
 
-	void Start () {}
-	void Update () {}
+	protected Entity entity {
+		get { return GetComponent<Entity>(); }
+	}
+
+	protected virtual void Move () {}
+
+	void FixedUpdate () {
+		Move();
+	}
 }
