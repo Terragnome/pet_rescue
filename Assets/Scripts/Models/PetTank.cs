@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
-public class PetMob : Pet {
+public class PetTank : Pet {
 	protected void Start () {
 		petType = PetType.Mob;
-		petName = PetName.Dog;
+		petName = PetName.Rhino;
 		petSpeed = 1;
-		petWeight = 1;
+		petWeight = 3;
 
 		base.Start();
 	}
