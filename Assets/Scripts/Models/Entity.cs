@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class Entity : MonoBehaviour {
 	protected const float GRAVITY = 9.8f;
 
-	public float walkSpeed = 3f;
-	public float turnSpeed = 7f;
-	public float dashSpeed = 6f;
-	public float dashDuration = 0.3f;
+	public float walkSpeed;
+	public float turnSpeed;
+	public float dashSpeed;
+	public float dashDuration;
 
-	public float pushForce = 5f;
+	public float pushForce;
 
 	public GameObject avatar {
 	    get { return transform.GetChild(0).gameObject; }
@@ -29,7 +29,14 @@ public class Entity : MonoBehaviour {
 
 	void UpdateMovement () {}
 
-	protected void Start() {}
+	protected void Start() {
+        walkSpeed = 3f;
+        turnSpeed = 7f;
+        dashSpeed = 6f;
+        dashDuration = 0.3f;
+
+        pushForce = 5f;
+    }
 
     public float GetModifiedSpeed(float speed)
     {

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class ToolPush : Tool {
-	protected void Start () {
+	protected new void Start () {
 		debugRayColor = Color.yellow;
 
 		rechargeRate = 1;

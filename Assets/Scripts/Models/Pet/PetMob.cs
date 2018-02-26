@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class PetMob : Pet {
-	protected void Start () {
+	protected new void Start () {
 		petType = PetType.Mob;
 		petName = PetName.Dog;
 		petSpeed = 1;

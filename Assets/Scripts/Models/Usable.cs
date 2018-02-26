@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Usable : MonoBehaviour {
-	Collider collider {
+	new Collider collider {
 		get {
 			BoxCollider boxCollider = GetComponent<BoxCollider>();
 			if(boxCollider == null){

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class ToolSlow : Tool {
-	protected void Start () {
+	protected new void Start () {
 		debugRayColor = Color.blue;
 
 		rechargeRate = 1;

@@ -2,14 +2,14 @@ using UnityEngine;
 using System.Collections;
 
 public class ToolGravity : Tool {
-	protected void Start () {
-		debugRayColor = Color.white;
+	protected new void Start () {
+		debugRayColor = Color.green;
 
 		rechargeRate = 1;
-		useRate = 1;
-		maxCharge = 3;
+		useRate = 2;
+		maxCharge = 100;
 
-		range = 2;
+		range = 25;
 
 		base.Start();
 	}

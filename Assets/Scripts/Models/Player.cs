@@ -25,7 +25,14 @@ public class Player : Entity {
 		}
 	}
 
-	protected void Start () {
+	protected new void Start () {
+		base.Start();
+		walkSpeed = 7f;
+		turnSpeed = 7f;
+		dashSpeed = walkSpeed*2;
+		dashDuration = 2.0f;
+		pushForce = 5f;
+
 		liftAngle = 60f;
 		liftDistanceSquared = Mathf.Pow(4f, 2);
 
@@ -33,14 +40,6 @@ public class Player : Entity {
  		useDistanceSquared = liftDistanceSquared;
 
  		useAngle = liftAngle;
-
-		walkSpeed = 7f;
-		turnSpeed = 7f;
-		dashSpeed = walkSpeed*2;
-		dashDuration = 2.0f;
-		pushForce = 5f;
-
-		base.Start();
 	}
 
 	void FixedUpdate () {
@@ -130,7 +129,7 @@ public class Player : Entity {
 				Tool tool = liftTarget.GetComponent<Tool>() as Tool;
 				if( tool ){
 					tool.user = this;
-					bool isUsing = tool.Use();
+					tool.Use();
 					return;
 				}
 			}

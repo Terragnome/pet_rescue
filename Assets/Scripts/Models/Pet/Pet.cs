@@ -15,7 +15,7 @@ public class Pet : Entity {
 		get { return GetComponent<BehaviorComponent>(); }
 	}
 
-	protected void Start () {
+	protected new void Start () {
 		gameObject.AddComponent<Portable>();
 		gameObject.AddComponent<BehaviorComponent>();
 		base.Start();
