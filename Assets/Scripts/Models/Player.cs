@@ -5,15 +5,15 @@ public class Player : Entity {
 	float dashTimeLeft = 0f;
 	bool isDashing = false;
 
-	public float liftDistanceSquared = Mathf.Pow(5f, 2);
-	public float liftAngle = 60f;
-	public Portable liftTarget = null;
+	protected float liftDistanceSquared;
+	protected float liftAngle;
+	protected Portable liftTarget = null;
 
-	public float dropDistanceSquared = Mathf.Pow(5f, 2);
+	protected float dropDistanceSquared;
 
-	public float useDistanceSquared = Mathf.Pow(5f, 2);
-	public float useAngle = 60f;
-	public Usable useTarget = null;
+	protected float useDistanceSquared;
+	protected float useAngle;
+	protected Usable useTarget = null;
 
 	public Vector3 avatarLiftPosition {
 		get {
@@ -26,6 +26,14 @@ public class Player : Entity {
 	}
 
 	protected void Start () {
+		liftAngle = 60f;
+		liftDistanceSquared = Mathf.Pow(4f, 2);
+
+		dropDistanceSquared = liftDistanceSquared;
+ 		useDistanceSquared = liftDistanceSquared;
+
+ 		useAngle = liftAngle;
+
 		walkSpeed = 7f;
 		turnSpeed = 7f;
 		dashSpeed = walkSpeed*2;
@@ -95,6 +103,7 @@ public class Player : Entity {
 				&& IsFacing(curPortable.transform.position, liftAngle)
 			){
 				closestPortable = curPortable;
+				closestPortableDistSquared = curPortableDistSquared;
 			}
 	    }
 	    return closestPortable;
