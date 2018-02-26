@@ -16,7 +16,13 @@ public class Player : Entity {
 	public Usable useTarget = null;
 
 	public Vector3 avatarLiftPosition {
-		get { return avatar.transform.position+avatar.transform.forward*0.9f+Vector3.up*0.7f; }
+		get {
+			return (
+				avatar.transform.position
+				+avatar.transform.forward*0.9f
+				+Vector3.up*0.7f
+			);
+		}
 	}
 
 	protected void Start () {
@@ -157,8 +163,9 @@ public class Player : Entity {
 		if(checkUse){
 			if( liftTarget ){
 				Tool tool = liftTarget.GetComponent<Tool>() as Tool;
-				if (tool){
-					tool.Use();
+				if( tool ){
+					tool.user = this;
+					bool isUsing = tool.Use();
 					return;
 				}
 			}

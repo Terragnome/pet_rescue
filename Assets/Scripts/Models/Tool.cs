@@ -2,11 +2,16 @@ using UnityEngine;
 using System.Collections;
 
 public class Tool : MonoBehaviour {
+	public Entity user;
+
+	protected Color debugRayColor = Color.white;
+
 	public float useRate;
 	public float rechargeRate;
 	public float maxCharge;
 
 	public float charge;
+	public float range;
 
 	protected Portable portable {
 		get { return GetComponent<Portable>(); }
@@ -27,10 +32,16 @@ public class Tool : MonoBehaviour {
 		charge = Mathf.Min(maxCharge, charge+rechargeRate);
 	}
 
-	public void Use() {
+	public bool Use() {
+		charge = Mathf.Max(0, charge-useRate);
 		if(charge > 0){
-			charge = Mathf.Max(0, charge-useRate);
-			Debug.DrawRay(gameObject.transform.position, gameObject.transform.position+Vector3.forward);
+			Debug.DrawRay(
+				gameObject.transform.position,
+				gameObject.transform.position+user.avatar.transform.forward*range,
+				debugRayColor
+			);
+			return true;
 		}
+		return false;
 	}
 }

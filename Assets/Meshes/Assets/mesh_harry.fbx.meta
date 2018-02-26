@@ -1,23 +1,20 @@
 fileFormatVersion: 2
-guid: c5fedfa3c145ced4a96f9501f18284a1
-timeCreated: 1519597927
+guid: 9ac713b9c01dd1b419612ca6d4e4a60d
+timeCreated: 1519600410
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: handle1
-    100004: pCylinder4
     400000: //RootNode
-    400002: handle1
-    400004: pCylinder4
-    2100000: lambert1
+    2100000: skin
+    2100002: nose
+    2100004: Shoes
+    2100006: hair
+    2100008: eye
     2300000: //RootNode
-    2300002: handle1
     3300000: //RootNode
-    3300002: handle1
-    4300000: handle1
-    4300002: mesh_grav
+    4300000: mesh_human
     9500000: //RootNode
   externalObjects: {}
   materials:
