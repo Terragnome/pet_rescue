@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Portable : MonoBehaviour {
     private BehaviorHeld mBehaviorHeld = null;
+    private bool mIsHeld = false;
 
     void Start () {
 		Rigidbody initRigidbody = rb;
@@ -47,7 +48,9 @@ public class Portable : MonoBehaviour {
 	        behaviorComponent.PushOneShotBehavior(mBehaviorHeld);
         }
 
-		return this;
+        mIsHeld = true;
+
+        return this;
 	}
 
 	public void Drop() {
@@ -56,7 +59,14 @@ public class Portable : MonoBehaviour {
 	        mBehaviorHeld = null;	
 		}
 
+        mIsHeld = false;
+
         rb.velocity = Vector3.zero;
 		rb.useGravity = true;
 	}
+
+    public bool IsHeld()
+    {
+        return mIsHeld;
+    }
 }

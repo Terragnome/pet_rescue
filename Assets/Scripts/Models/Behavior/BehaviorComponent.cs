@@ -22,8 +22,8 @@ public class BehaviorComponent : MonoBehaviour
 
     public void Start()
     {
-        mBasicBehaviors.Add(delegate(Entity entity) { return new BehaviorWander(entity, 3.0f); });
-        //mBasicBehaviors.Add(delegate(Entity entity) { return new BehaviorLevitate(entity, 1.0f); });
+        mBasicBehaviors.Add(delegate(Entity entity) { return new BehaviorWander(entity, 5.0f); });
+        mBasicBehaviors.Add(delegate (Entity entity) { return new BehaviorWait(entity, 1.0f); });
     }
 
     public void FixedUpdate()
