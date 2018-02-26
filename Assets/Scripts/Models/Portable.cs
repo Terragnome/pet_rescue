@@ -3,8 +3,10 @@ using System.Collections;
 
 public class Portable : MonoBehaviour {
 	public Container container = null;
+    private BehaviorHeld mBehaviorHeld = null;
 
-	void Start () {
+
+    void Start () {
 		Rigidbody initRigidbody = rb;
 		Collider initCollider = col;
 	}
@@ -44,6 +46,11 @@ public class Portable : MonoBehaviour {
 		}
 		rb.isKinematic = false;
 		rb.useGravity = false;
+
+        BehaviorComponent behaviorComponent = GetComponent<BehaviorComponent>();
+        mBehaviorHeld = new BehaviorHeld(GetComponent<Entity>());
+        behaviorComponent.PushOneShotBehavior(mBehaviorHeld);
+
 		return this;
 	}
 
@@ -59,7 +66,10 @@ public class Portable : MonoBehaviour {
 	}
 
 	public void Drop() {
-		rb.velocity = Vector3.zero;
+        mBehaviorHeld.SetDone();
+        mBehaviorHeld = null;
+
+        rb.velocity = Vector3.zero;
 		rb.useGravity = true;
 	}
 }

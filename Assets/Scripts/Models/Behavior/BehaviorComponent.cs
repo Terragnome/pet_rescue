@@ -10,7 +10,10 @@ public class BehaviorComponent : MonoBehaviour
     private int mBasicBehaviorIndex = 0;
 
     private List<Behavior> mPendingBehaviors = new List<Behavior>();
-    private Stack<Behavior> mBehaviorStack = new Stack<Behavior>();
+    private List<Behavior> mBehaviors = new List<Behavior>();
+
+    private Behavior mPendingMovementBehavior = null;
+    private Behavior mMovementBehavior = null;
 
     public void PushOneShotBehavior(Behavior behavior)
     {
@@ -20,41 +23,51 @@ public class BehaviorComponent : MonoBehaviour
     public void Start()
     {
         mBasicBehaviors.Add(delegate(Entity entity) { return new BehaviorWander(entity, 3.0f); });
-        mBasicBehaviors.Add(delegate(Entity entity) { return new BehaviorLevitate(entity, 1.0f); });
-
-        Debug.Assert(mBasicBehaviors.Count > 0);
-
-        Behavior basicBehavior = GetNextBasicBehavior();
-        PushBehavior(basicBehavior);
+        //mBasicBehaviors.Add(delegate(Entity entity) { return new BehaviorLevitate(entity, 1.0f); });
     }
 
     public void FixedUpdate()
     {
-        foreach (Behavior pendingBehavior in mPendingBehaviors)
+        // Clean up completed behaviors
+        for (int i = mBehaviors.Count - 1; i >= 0; --i)
         {
-            PushBehavior(pendingBehavior);
+            Behavior behavior = mBehaviors[i];
+            if (behavior.IsDone())
+            {
+                behavior.Stop();
+                mBehaviors.RemoveAt(i);
+            }
         }
 
-        Behavior activeBehavior = GetActiveBehavior();
-        activeBehavior.FixedUpdate();
-
-        activeBehavior.UpdateTimer(Time.deltaTime);
-        if (activeBehavior.IsTimedOut())
+        // Update up movement if necessary
+        if (mMovementBehavior != null)
         {
-            PopBehavior();
+            if (mPendingMovementBehavior != null || mMovementBehavior.IsDone())
+            {
+                mMovementBehavior.Stop();
+                mMovementBehavior = null;
+            }
+        }
+        if (mMovementBehavior == null)
+        {
+            mMovementBehavior = mPendingMovementBehavior ?? GetNextBasicBehavior();
+            mMovementBehavior.Start();
+            mPendingMovementBehavior = null;
         }
 
-        if (mBehaviorStack.Count == 0)
+        // Start pending behaviors
+        foreach (Behavior behavior in mPendingBehaviors)
         {
-            Behavior basicBehavior = GetNextBasicBehavior();
-            PushBehavior(basicBehavior);
+            behavior.Start();
+            mBehaviors.Add(behavior);
         }
-    }
 
-    private Behavior GetActiveBehavior()
-    {
-        Debug.Assert(mBehaviorStack.Count > 0);
-        return mBehaviorStack.Peek();
+        // Update all behaviors
+        mMovementBehavior.FixedUpdate();
+        foreach (Behavior behavior in mBehaviors)
+        {
+            behavior.FixedUpdate();
+        }
     }
 
     private Behavior GetNextBasicBehavior()
@@ -72,29 +85,14 @@ public class BehaviorComponent : MonoBehaviour
 
     private void PushBehavior(Behavior behavior)
     {
-        if (mBehaviorStack.Count > 0)
+        if (behavior.IsMovement())
         {
-            Behavior activeBehavior = mBehaviorStack.Peek();
-            activeBehavior.OnSuspend();
-            print("Suspended " + activeBehavior.GetDebugName());
+            // Only take the latest requested movement behavior
+            mPendingMovementBehavior = behavior;
         }
-
-        mBehaviorStack.Push(behavior);
-        behavior.Start();
-        print("Started " + behavior.GetDebugName());
-    }
-
-    private void PopBehavior()
-    {
-        Behavior activeBehavior = mBehaviorStack.Pop();
-        activeBehavior.Stop();
-        print("Stopped " + activeBehavior.GetDebugName());
-
-        if (mBehaviorStack.Count > 0)
+        else
         {
-            Behavior behavior = mBehaviorStack.Peek();
-            behavior.OnResume();
-            print("Resumed " + behavior.GetDebugName());
+            mBehaviors.Add(behavior);
         }
     }
 }

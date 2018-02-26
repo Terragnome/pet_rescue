@@ -25,7 +25,40 @@ public class Entity : MonoBehaviour {
 		return new Vector2(v.x, v.z);
 	}
 
+    private List<float> mSpeedModifiers = new List<float>();
+
 	void UpdateMovement () {}
 
 	protected void Start() {}
+
+    public float GetModifiedSpeed(float speed)
+    {
+        float modifier = GetSpeedModifier();
+        float modifiedSpeed = speed + modifier;
+        if (modifiedSpeed > 0.0f)
+        {
+            return modifiedSpeed;
+        }
+        return 0.0f;
+    }
+
+    public float GetSpeedModifier()
+    {
+        float totalModifier = 0.0f;
+        foreach (float modifier in mSpeedModifiers)
+        {
+            totalModifier += modifier;
+        }
+        return totalModifier;
+    }
+
+    public void AddSpeedModifier(float speedModifier)
+    {
+        mSpeedModifiers.Add(speedModifier);
+    }
+
+    public void RemoveSpeedModifier(float speedModifier)
+    {
+        mSpeedModifiers.Remove(speedModifier);
+    }
 }
