@@ -101,7 +101,9 @@ public class Player : Entity {
 		Portable closestPortable = null;
 		float closestPortableDistSquared = liftDistanceSquared;
 		foreach(Portable curPortable in portables){
-			float curPortableDistSquared = DistanceSquaredTo(curPortable.transform.position);
+			// Vector3 closestPoint = curPortable.gameObject.GetComponent<Collider>().ClosestPointOnBounds(avatar.transform.position);
+			Vector3 closestPoint = curPortable.transform.position;
+			float curPortableDistSquared = DistanceSquaredTo(closestPoint);
 			if(
 				curPortableDistSquared <= closestPortableDistSquared
 				&& IsFacing(curPortable.transform.position, liftAngle)
@@ -210,7 +212,6 @@ public class Player : Entity {
 		}
 
 		if( isDashing ){
-			print("Dashing");
 			curMoveSpeed = dashSpeed;
 			if(dashTimeLeft > 0){
 				dashTimeLeft -= dT;
