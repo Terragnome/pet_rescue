@@ -1,15 +1,15 @@
 using UnityEngine;
 using System.Collections;
 
-public class ToolGravity : Tool {
+public class ToolSlow : Tool {
 	protected void Start () {
-		debugRayColor = Color.white;
+		debugRayColor = Color.blue;
 
 		rechargeRate = 1;
-		useRate = 1;
-		maxCharge = 3;
+		useRate = 2;
+		maxCharge = 100;
 
-		range = 3;
+		range = 25;
 
 		base.Start();
 	}

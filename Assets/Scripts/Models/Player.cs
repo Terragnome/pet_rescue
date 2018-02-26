@@ -5,13 +5,13 @@ public class Player : Entity {
 	float dashTimeLeft = 0f;
 	bool isDashing = false;
 
-	public float liftDistanceSquared = Mathf.Pow(2f, 2);
+	public float liftDistanceSquared = Mathf.Pow(5f, 2);
 	public float liftAngle = 60f;
 	public Portable liftTarget = null;
 
-	public float dropDistanceSquared = Mathf.Pow(2f, 2);
+	public float dropDistanceSquared = Mathf.Pow(5f, 2);
 
-	public float useDistanceSquared = Mathf.Pow(2f, 2);
+	public float useDistanceSquared = Mathf.Pow(5f, 2);
 	public float useAngle = 60f;
 	public Usable useTarget = null;
 
@@ -20,16 +20,16 @@ public class Player : Entity {
 			return (
 				avatar.transform.position
 				+avatar.transform.forward*0.9f
-				+Vector3.up*0.7f
+				+Vector3.up*1.5f
 			);
 		}
 	}
 
 	protected void Start () {
-		walkSpeed = 3f;
+		walkSpeed = 7f;
 		turnSpeed = 7f;
-		dashSpeed = 6f;
-		dashDuration = 0.3f;
+		dashSpeed = walkSpeed*2;
+		dashDuration = 2.0f;
 		pushForce = 5f;
 
 		base.Start();
@@ -84,35 +84,7 @@ public class Player : Entity {
         return closestUsable;
 	}
 
-	Container GetClosestContainer(float useDistance) {
-		Container[] containers = Object.FindObjectsOfType<Container>();
-		Container closestContainer = null;
-		foreach(Container curContainer in containers){
-			if(
-				!curContainer.isFull
-				&& DistanceSquaredTo(curContainer.transform.position) <= dropDistanceSquared
-				&& IsFacing(curContainer.transform.position, useAngle)
-			){
-				closestContainer = curContainer;
-			}
-        }
-        return closestContainer;
-	}
-
 	Portable GetClosestPortable(float liftDistanceSquared) {
-		Generator[] generators = Object.FindObjectsOfType<Generator>();
-		Generator closestGenerator = null;
-		float closestGeneratorDistSquared = liftDistanceSquared;
-		foreach(Generator curGenerator in generators){
-			float curGeneratorDistSquared = DistanceSquaredTo(curGenerator.transform.position);
-			if(
-				curGeneratorDistSquared <= closestGeneratorDistSquared
-				&& IsFacing(curGenerator.transform.position, liftAngle)
-			){
-				closestGenerator = curGenerator;
-			}
-		}
-
 		Portable[] portables = Object.FindObjectsOfType<Portable>();
 		Portable closestPortable = null;
 		float closestPortableDistSquared = liftDistanceSquared;
@@ -124,24 +96,8 @@ public class Player : Entity {
 			){
 				closestPortable = curPortable;
 			}
-    }
-
-    if(
-    	(
-    		closestGenerator != null
-    		&& closestGenerator.CanGenerate
-    	)
-    	&& (
-    		closestPortable == null
-    		|| closestGeneratorDistSquared < closestPortableDistSquared
-    	)
-    ){
-    	Portable newGenerated = closestGenerator.Generate();
-    	if(newGenerated != null){
-    		return newGenerated;
-    	}
-    }
-    return closestPortable;
+	    }
+	    return closestPortable;
 	}
 
 	void UpdateLookAt(Vector3 lookVector, float dT, float lookSpeed=1f) {
@@ -195,13 +151,7 @@ public class Player : Entity {
 		bool checkLift = Input.GetKeyDown(KeyCode.Space);
 		if(checkLift){
 			if( IsLifting() ){
-				Container closestContainer = GetClosestContainer(dropDistanceSquared);
-				if(closestContainer != null){
-					closestContainer.FillWith(liftTarget);
-					liftTarget.DropOn(closestContainer);
-				}else{
-					liftTarget.Drop();
-				}
+				liftTarget.Drop();
 				liftTarget = null;
 			}else{
 				Portable curTarget = GetClosestPortable(liftDistanceSquared);

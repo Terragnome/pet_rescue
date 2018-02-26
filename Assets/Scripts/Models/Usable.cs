@@ -13,10 +13,6 @@ public class Usable : MonoBehaviour {
 		}
 	}
 
-	Container container {
-		get { return GetComponent<Container>(); }
-	}
-
 	public void Use(float dT) {
 		UpdateProgress(dT);
 	}

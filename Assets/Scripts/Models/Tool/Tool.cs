@@ -35,9 +35,10 @@ public class Tool : MonoBehaviour {
 	public bool Use() {
 		charge = Mathf.Max(0, charge-useRate);
 		if(charge > 0){
+			Vector3 origin = user.avatar.transform.position;
 			Debug.DrawRay(
-				gameObject.transform.position,
-				gameObject.transform.position+user.avatar.transform.forward*range,
+				origin,
+				origin+user.avatar.transform.forward*range,
 				debugRayColor
 			);
 			return true;

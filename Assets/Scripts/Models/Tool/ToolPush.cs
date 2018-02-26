@@ -9,7 +9,7 @@ public class ToolPush : Tool {
 		useRate = 2;
 		maxCharge = 100;
 
-		range = 10;
+		range = 25;
 
 		base.Start();
 	}

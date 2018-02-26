@@ -2,9 +2,7 @@
 using System.Collections;
 
 public class Portable : MonoBehaviour {
-	public Container container = null;
     private BehaviorHeld mBehaviorHeld = null;
-
 
     void Start () {
 		Rigidbody initRigidbody = rb;
@@ -40,34 +38,23 @@ public class Portable : MonoBehaviour {
 	}
 
 	public Portable Lift() {
-		if(container){
-			container.Clear();
-			container = null;
-		}
 		rb.isKinematic = false;
 		rb.useGravity = false;
 
         BehaviorComponent behaviorComponent = GetComponent<BehaviorComponent>();
-        mBehaviorHeld = new BehaviorHeld(GetComponent<Entity>());
-        behaviorComponent.PushOneShotBehavior(mBehaviorHeld);
+        if(behaviorComponent){
+	        mBehaviorHeld = new BehaviorHeld(GetComponent<Entity>());
+	        behaviorComponent.PushOneShotBehavior(mBehaviorHeld);
+        }
 
 		return this;
 	}
 
-	public void DropOn(Container targetContainer) {
-		container = targetContainer;
-		rb.isKinematic = true;
-		Vector3 newPosition = new Vector3(
-			container.transform.position.x,
-			container.transform.position.y+container.transform.lossyScale.y,
-			container.transform.position.z
-		);
-		rb.transform.position = newPosition;
-	}
-
 	public void Drop() {
-        mBehaviorHeld.SetDone();
-        mBehaviorHeld = null;
+		if(mBehaviorHeld != null){
+			mBehaviorHeld.SetDone();
+	        mBehaviorHeld = null;	
+		}
 
         rb.velocity = Vector3.zero;
 		rb.useGravity = true;
