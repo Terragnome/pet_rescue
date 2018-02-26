@@ -19,7 +19,7 @@ public class Player : Entity {
 		get {
 			return (
 				avatar.transform.position
-				+avatar.transform.forward*0.9f
+				+avatar.transform.forward*2.0f
 				+Vector3.up*1.5f
 			);
 		}
@@ -35,7 +35,7 @@ public class Player : Entity {
 		walkSpeed = 7f;
 		turnSpeed = 7f;
 		dashSpeed = walkSpeed*3;
-		dashDuration = 0.5f;
+		dashDuration = 0.3f;
 		pushForce = 5f;
 
 		liftAngle = 60f;
@@ -203,13 +203,14 @@ public class Player : Entity {
 		bool isMoving = isWalkForward || isWalkBack || isWalkLeft || isWalkRight;
 		if ( !isMoving ) return;
 
-		if( !isDashing ){
-			bool hasDashed = controls.IsDash();
-			if(hasDashed){
-				isDashing = true;
-				dashTimeLeft = dashDuration;
-			}
-		}else{
+		bool hasDashed = controls.IsDash();
+		if(hasDashed){
+			isDashing = true;
+			dashTimeLeft = dashDuration;
+		}
+
+		if( isDashing ){
+			print("Dashing");
 			curMoveSpeed = dashSpeed;
 			if(dashTimeLeft > 0){
 				dashTimeLeft -= dT;

@@ -32,7 +32,7 @@ public class Entity : MonoBehaviour {
 	protected void Start() {
         walkSpeed = 3f;
         turnSpeed = 7f;
-        dashSpeed = 6f;
+        dashSpeed = 5f;
         dashDuration = 0.3f;
 
         pushForce = 5f;
