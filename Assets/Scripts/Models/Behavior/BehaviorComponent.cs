@@ -51,7 +51,10 @@ public class BehaviorComponent : MonoBehaviour
         if (mMovementBehavior == null)
         {
             mMovementBehavior = mPendingMovementBehavior ?? GetNextBasicBehavior();
-            mMovementBehavior.Start();
+            if (mMovementBehavior != null)
+            {
+                mMovementBehavior.Start();
+            }
             mPendingMovementBehavior = null;
         }
 
@@ -64,7 +67,10 @@ public class BehaviorComponent : MonoBehaviour
         mPendingBehaviors.Clear();
 
         // Update all behaviors
-        mMovementBehavior.FixedUpdate();
+        if (mMovementBehavior != null)
+        {
+            mMovementBehavior.FixedUpdate();
+        }
         foreach (Behavior behavior in mBehaviors)
         {
             behavior.FixedUpdate();
@@ -73,6 +79,11 @@ public class BehaviorComponent : MonoBehaviour
 
     private Behavior GetNextBasicBehavior()
     {
+        if (mBasicBehaviors.Count == 0)
+        {
+            return null;
+        }
+
         if (mBasicBehaviorIndex >= mBasicBehaviors.Count)
         {
             mBasicBehaviorIndex = 0;

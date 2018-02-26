@@ -47,9 +47,20 @@ public class BehaviorScore : Behavior
             {
                 mScored = true;
 
-                // Update score
+                Score();
+
                 Object.Destroy(mEntity.gameObject, sTimeout);
             }
+        }
+    }
+
+    private void Score()
+    {
+        GameObject ui = GameObject.Find("UI");
+        if (ui != null)
+        {
+            UiManager uiManager = ui.GetComponent<UiManager>();
+            uiManager.UpdateScore(1);
         }
     }
 }
