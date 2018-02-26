@@ -128,7 +128,7 @@ public class Player : Entity {
 	}
 
 	void UpdateUse(float dT) {
-		bool checkUse = Input.GetKey(controls.use);
+		bool checkUse = controls.IsUse();
 		if(checkUse){
 			if( liftTarget ){
 				Tool tool = liftTarget.GetComponent<Tool>() as Tool;
@@ -161,7 +161,7 @@ public class Player : Entity {
 	}
 
 	void UpdateLift(float dT) {
-		bool checkLift = Input.GetKeyDown(controls.lift);
+		bool checkLift = controls.IsLift();
 		if(checkLift){
 			if( IsLifting() ){
 				liftTarget.Drop();
@@ -195,16 +195,16 @@ public class Player : Entity {
 	void UpdateMovement(float dT) {
 		float curMoveSpeed = walkSpeed;
 
-		bool isWalkForward = Input.GetKey(controls.up);
-		bool isWalkBack = Input.GetKey(controls.down);
-		bool isWalkLeft = Input.GetKey(controls.left);
-		bool isWalkRight = Input.GetKey(controls.right);
+		bool isWalkForward = controls.IsForward();
+		bool isWalkBack = controls.IsBackward();
+		bool isWalkLeft = controls.IsLeft();
+		bool isWalkRight = controls.IsRight();
 
 		bool isMoving = isWalkForward || isWalkBack || isWalkLeft || isWalkRight;
 		if ( !isMoving ) return;
 
 		if( !isDashing ){
-			bool hasDashed = Input.GetKeyDown(controls.dash);
+			bool hasDashed = controls.IsDash();
 			if(hasDashed){
 				isDashing = true;
 				dashTimeLeft = dashDuration;
