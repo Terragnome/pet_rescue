@@ -10,7 +10,7 @@ public class PetTank : Pet {
 		petSpeed = 1;
 		petWeight = 3;
 
-		walkSpeed = 7f;
+		walkSpeed = 3f;
 	}
 
 	void Update () {}

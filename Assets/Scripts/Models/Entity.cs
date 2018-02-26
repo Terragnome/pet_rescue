@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class Entity : MonoBehaviour {
 	protected const float GRAVITY = 9.8f;
 
-	public float walkSpeed;
-	public float turnSpeed;
-	public float dashSpeed;
-	public float dashDuration;
+	public float walkSpeed = -1;
+	public float turnSpeed = -1;
+	public float dashSpeed = -1;
+	public float dashDuration = -1;
 
 	public float pushForce;
 
@@ -30,10 +30,10 @@ public class Entity : MonoBehaviour {
 	void UpdateMovement () {}
 
 	protected void Start() {
-        walkSpeed = 3f;
-        turnSpeed = 7f;
-        dashSpeed = 5f;
-        dashDuration = 0.3f;
+        if(walkSpeed == -1){ walkSpeed = 3f; }
+        if(turnSpeed == -1){ turnSpeed = 7f; }
+        if(dashSpeed == -1){ dashSpeed = 5f; }
+        if(dashDuration == -1){ dashDuration = 0.3f; }
 
         pushForce = 5f;
     }
