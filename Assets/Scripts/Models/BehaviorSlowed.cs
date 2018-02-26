@@ -4,7 +4,7 @@ using System.Collections;
 public class BehaviorSlowed : BehaviorTimed
 {
     private static float sTimeout = 0.5f;
-    private static float sSpeedModifier = .5f;
+    private static float sSpeedModifier = -1.0f;
 
     public BehaviorSlowed(Entity entity)
         : base(entity, sTimeout)

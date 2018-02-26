@@ -13,6 +13,8 @@ public class Tool : MonoBehaviour {
 	public float charge;
 	public float range;
 
+    private bool mUse = false;
+
 	protected Portable portable {
 		get { return GetComponent<Portable>(); }
 	}
@@ -28,21 +30,28 @@ public class Tool : MonoBehaviour {
 		charge = maxCharge;
 	}
 
-	void FixedUpdate () {
+    private void Update()
+    {
+        if (mUse)
+        {
+            OnUse();
+            mUse = false;
+        }
+    }
+
+    void FixedUpdate () {
 		charge = Mathf.Min(maxCharge, charge+rechargeRate);
 	}
 
 	public bool Use() {
 		charge = Mathf.Max(0, charge-useRate);
 		if(charge > 0){
-			Vector3 origin = user.avatar.transform.position;
-			Debug.DrawRay(
-				origin,
-				origin+user.avatar.transform.forward*range,
-				debugRayColor
-			);
-			return true;
-		}
-		return false;
+            mUse = true;
+            return true;
+        }
+        return false;
 	}
+
+    protected virtual void OnUse()
+    { }
 }

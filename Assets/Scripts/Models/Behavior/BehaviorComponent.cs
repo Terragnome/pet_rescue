@@ -61,6 +61,7 @@ public class BehaviorComponent : MonoBehaviour
             behavior.Start();
             mBehaviors.Add(behavior);
         }
+        mPendingBehaviors.Clear();
 
         // Update all behaviors
         mMovementBehavior.FixedUpdate();
@@ -92,7 +93,7 @@ public class BehaviorComponent : MonoBehaviour
         }
         else
         {
-            mBehaviors.Add(behavior);
+            mPendingBehaviors.Add(behavior);
         }
     }
 }
