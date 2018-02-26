@@ -25,12 +25,17 @@ public class Player : Entity {
 		}
 	}
 
+	protected PlayerControls controls {
+		get { return GetComponent<PlayerControls>(); }
+	}
+
+
 	protected new void Start () {
 		base.Start();
 		walkSpeed = 7f;
 		turnSpeed = 7f;
-		dashSpeed = walkSpeed*2;
-		dashDuration = 2.0f;
+		dashSpeed = walkSpeed*3;
+		dashDuration = 0.5f;
 		pushForce = 5f;
 
 		liftAngle = 60f;
@@ -123,7 +128,7 @@ public class Player : Entity {
 	}
 
 	void UpdateUse(float dT) {
-		bool checkUse = Input.GetKey(KeyCode.F);
+		bool checkUse = Input.GetKey(controls.use);
 		if(checkUse){
 			if( liftTarget ){
 				Tool tool = liftTarget.GetComponent<Tool>() as Tool;
@@ -156,7 +161,7 @@ public class Player : Entity {
 	}
 
 	void UpdateLift(float dT) {
-		bool checkLift = Input.GetKeyDown(KeyCode.Space);
+		bool checkLift = Input.GetKeyDown(controls.lift);
 		if(checkLift){
 			if( IsLifting() ){
 				liftTarget.Drop();
@@ -190,16 +195,16 @@ public class Player : Entity {
 	void UpdateMovement(float dT) {
 		float curMoveSpeed = walkSpeed;
 
-		bool isWalkForward = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
-		bool isWalkBack = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
-		bool isWalkLeft = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
-		bool isWalkRight = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
+		bool isWalkForward = Input.GetKey(controls.up);
+		bool isWalkBack = Input.GetKey(controls.down);
+		bool isWalkLeft = Input.GetKey(controls.left);
+		bool isWalkRight = Input.GetKey(controls.right);
 
 		bool isMoving = isWalkForward || isWalkBack || isWalkLeft || isWalkRight;
 		if ( !isMoving ) return;
 
 		if( !isDashing ){
-			bool hasDashed = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+			bool hasDashed = Input.GetKeyDown(controls.dash);
 			if(hasDashed){
 				isDashing = true;
 				dashTimeLeft = dashDuration;

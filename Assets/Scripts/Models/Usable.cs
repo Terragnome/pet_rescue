@@ -18,6 +18,6 @@ public class Usable : MonoBehaviour {
 	}
 
 	void UpdateProgress(float dT){
-		Debug.Log("Using!");
+		// Debug.Log("Using!");
 	}
 }
