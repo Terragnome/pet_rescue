@@ -1,16 +1,36 @@
 fileFormatVersion: 2
-guid: 8e387d66bd9a80b4b97c4c4eca2b6f7f
-timeCreated: 1519617302
+guid: 133d2675ed0a1a04aa466db6c52c94b3
+timeCreated: 1519849648
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: glow
+    100002: //RootNode
+    100004: mesh_glow
+    100006: mesh_tele_ncl1_1
+    100008: mesh_pillar
+    400000: glow
+    400002: //RootNode
+    400004: mesh_glow
+    400006: mesh_tele_ncl1_1
+    400008: mesh_pillar
     2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
+    2300000: glow
+    2300002: //RootNode
+    2300004: mesh_glow
+    2300006: mesh_tele_ncl1_1
+    2300008: mesh_pillar
+    3300000: glow
+    3300002: //RootNode
+    3300004: mesh_glow
+    3300006: mesh_tele_ncl1_1
+    3300008: mesh_pillar
     4300000: mesh_tele
+    4300002: glow
+    4300004: mesh_tele_ncl1_1
+    4300006: mesh_glow
+    4300008: mesh_pillar
     9500000: //RootNode
   externalObjects: {}
   materials:
