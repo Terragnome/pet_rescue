@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: d9b31aaa8c0dcdc4984e35714aba2b0d
+timeCreated: 1519856662
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: def
+    100004: def_ankle_L
+    100006: def_ankle_R
+    100008: def_chest
+    100010: def_clav_L
+    100012: def_clav_R
+    100014: def_ear_L
+    100016: def_ear_L_end
+    100018: def_ear_R
+    100020: def_ear_R_end
+    100022: def_elb_L
+    100024: def_elb_R
+    100026: def_foot_L
+    100028: def_foot_L_end
+    100030: def_foot_R
+    100032: def_foot_R_end
+    100034: def_hand_L_end
+    100036: def_hand_R_end
+    100038: def_head
+    100040: def_head_end
+    100042: def_hip_L
+    100044: def_hip_M
+    100046: def_hip_R
+    100048: def_Knee_L
+    100050: def_Knee_R
+    100052: def_master
+    100054: def_neck
+    100056: def_shld_L
+    100058: def_shld_R
+    100060: def_tail1
+    100062: def_tail2
+    100064: def_tail3
+    100066: def_tail4_end
+    100068: def_vert1
+    100070: def_vert2
+    100072: def_wst_L
+    100074: def_wst_R
+    100076: mesh_rhino
+    400000: //RootNode
+    400002: def
+    400004: def_ankle_L
+    400006: def_ankle_R
+    400008: def_chest
+    400010: def_clav_L
+    400012: def_clav_R
+    400014: def_ear_L
+    400016: def_ear_L_end
+    400018: def_ear_R
+    400020: def_ear_R_end
+    400022: def_elb_L
+    400024: def_elb_R
+    400026: def_foot_L
+    400028: def_foot_L_end
+    400030: def_foot_R
+    400032: def_foot_R_end
+    400034: def_hand_L_end
+    400036: def_hand_R_end
+    400038: def_head
+    400040: def_head_end
+    400042: def_hip_L
+    400044: def_hip_M
+    400046: def_hip_R
+    400048: def_Knee_L
+    400050: def_Knee_R
+    400052: def_master
+    400054: def_neck
+    400056: def_shld_L
+    400058: def_shld_R
+    400060: def_tail1
+    400062: def_tail2
+    400064: def_tail3
+    400066: def_tail4_end
+    400068: def_vert1
+    400070: def_vert2
+    400072: def_wst_L
+    400074: def_wst_R
+    400076: mesh_rhino
+    2100000: lambert1
+    2300000: //RootNode
+    2300002: mesh_rhino
+    3300000: //RootNode
+    3300002: mesh_rhino
+    4300000: mesh_rhino
+    7400000: run
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: mesh_rhino
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: run
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 19
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 1
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
