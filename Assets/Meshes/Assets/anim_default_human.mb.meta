@@ -306,6 +306,8 @@ ModelImporter:
     400296: sdk_Octrl_slider 1
     400298: geo_human
     2100000: lambert1
+    2300000: geo_human
+    3300000: geo_human
     4300000: geo_human
     7400000: Take 001
     9500000: //RootNode
