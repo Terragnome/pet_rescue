@@ -6,11 +6,93 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: def_ankle_L
+    100004: def_ankle_R
+    100006: def_chest_M
+    100008: def_ear1_L
+    100010: def_ear1_R
+    100012: def_ear2_L
+    100014: def_ear2_R
+    100016: def_elbow_L
+    100018: def_elbow_R
+    100020: def_fingers_L
+    100022: def_fingers_R
+    100024: def_foot_L
+    100026: def_foot_R
+    100028: def_god
+    100030: def_hand_L
+    100032: def_hand_R
+    100034: def_head_M
+    100036: def_hip_L
+    100038: def_hip_M
+    100040: def_hip_R
+    100042: def_knee_L
+    100044: def_knee_R
+    100046: def_neck1_M
+    100048: def_neck2_M
+    100050: def_scap_L
+    100052: def_scap_R
+    100054: def_shld_L
+    100056: def_shld_R
+    100058: def_tail1_M
+    100060: def_tail2_M
+    100062: def_tail3_M
+    100064: def_tail4_M
+    100066: def_toes_L
+    100068: def_toes_R
+    100070: def_vert1_M
+    100072: def_vert2_M
+    100074: def_wrist_L
+    100076: def_wrist_R
+    100078: mesh_sheep001:mesh_sheep
     400000: //RootNode
+    400002: def_ankle_L
+    400004: def_ankle_R
+    400006: def_chest_M
+    400008: def_ear1_L
+    400010: def_ear1_R
+    400012: def_ear2_L
+    400014: def_ear2_R
+    400016: def_elbow_L
+    400018: def_elbow_R
+    400020: def_fingers_L
+    400022: def_fingers_R
+    400024: def_foot_L
+    400026: def_foot_R
+    400028: def_god
+    400030: def_hand_L
+    400032: def_hand_R
+    400034: def_head_M
+    400036: def_hip_L
+    400038: def_hip_M
+    400040: def_hip_R
+    400042: def_knee_L
+    400044: def_knee_R
+    400046: def_neck1_M
+    400048: def_neck2_M
+    400050: def_scap_L
+    400052: def_scap_R
+    400054: def_shld_L
+    400056: def_shld_R
+    400058: def_tail1_M
+    400060: def_tail2_M
+    400062: def_tail3_M
+    400064: def_tail4_M
+    400066: def_toes_L
+    400068: def_toes_R
+    400070: def_vert1_M
+    400072: def_vert2_M
+    400074: def_wrist_L
+    400076: def_wrist_R
+    400078: mesh_sheep001:mesh_sheep
     2100000: lambert1
+    2100002: mesh_sheep001_sheep5_lambert2
     2300000: //RootNode
+    2300002: mesh_sheep001:mesh_sheep
     3300000: //RootNode
+    3300002: mesh_sheep001:mesh_sheep
     4300000: sheep_lowpoly:polySurface1
+    4300002: mesh_sheep001:mesh_sheep
   externalObjects: {}
   materials:
     importMaterials: 1
