@@ -87,7 +87,54 @@ ModelImporter:
     2300000: mesh_rhino
     3300000: mesh_rhino
     4300000: mesh_rhino
-  externalObjects: {}
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    11100002: def
+    11100004: def_ankle_L
+    11100006: def_ankle_R
+    11100008: def_chest
+    11100010: def_clav_L
+    11100012: def_clav_R
+    11100014: def_ear_L
+    11100016: def_ear_L_end
+    11100018: def_ear_R
+    11100020: def_ear_R_end
+    11100022: def_elb_L
+    11100024: def_elb_R
+    11100026: def_foot_L
+    11100028: def_foot_L_end
+    11100030: def_foot_R
+    11100032: def_foot_R_end
+    11100034: def_hand_L_end
+    11100036: def_hand_R_end
+    11100038: def_head
+    11100040: def_head_end
+    11100042: def_hip_L
+    11100044: def_hip_M
+    11100046: def_hip_R
+    11100048: def_Knee_L
+    11100050: def_Knee_R
+    11100052: def_master
+    11100054: def_neck
+    11100056: def_shld_L
+    11100058: def_shld_R
+    11100060: def_tail1
+    11100062: def_tail2
+    11100064: def_tail3
+    11100066: def_tail4_end
+    11100068: def_vert1
+    11100070: def_vert2
+    11100072: def_wst_L
+    11100074: def_wst_R
+    11100076: mesh_rhino
+    13700000: mesh_rhino
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: 83350efde2c350a46a10d1d16fd17420, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -106,7 +153,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -158,10 +205,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
